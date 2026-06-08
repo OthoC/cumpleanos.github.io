@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Cumpleaños Alisson</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+    background:linear-gradient(135deg,#ff69b4,#ffb6c1);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.contenedor{
+    text-align:center;
+    color:white;
+    z-index:10;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:20px;
+    text-shadow:2px 2px 5px rgba(0,0,0,.3);
+}
+
+button{
+    padding:15px 30px;
+    border:none;
+    border-radius:15px;
+    background:white;
+    color:#ff4f9a;
+    font-size:1.1rem;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+#mensaje{
+    margin-top:20px;
+    max-width:600px;
+    font-size:1.2rem;
+    opacity:0;
+    transition:1s;
+}
+
+.balon{
+    position:absolute;
+    bottom:-100px;
+    width:60px;
+    height:80px;
+    border-radius:50%;
+    animation:subir linear infinite;
+}
+
+.balon::after{
+    content:"";
+    position:absolute;
+    width:2px;
+    height:60px;
+    background:white;
+    left:50%;
+    top:80px;
+}
+
+@keyframes subir{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-120vh);
+    }
+}
+
+.confeti{
+    position:absolute;
+    width:10px;
+    height:10px;
+    animation:caer 4s linear forwards;
+}
+
+@keyframes caer{
+    from{
+        transform:translateY(-20px) rotate(0deg);
+    }
+    to{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+    <h1> ¡Feliz Cumpleaños Alisson! </h1>
+
+    <button onclick="sorpresa()">
+        Haz clic para el textote :D
+    </button>
+
+    <div id="mensaje"></div>
+</div>
+
+<script>
+for(let i=0;i<15;i++){
+    let balon=document.createElement("div");
+    balon.classList.add("balon");
+
+    const colores=["#ff0000","#00ff00","#ffff00","#00ffff","#ff00ff","#ffffff"];
+    balon.style.background=
+        colores[Math.floor(Math.random()*colores.length)];
+
+    balon.style.left=Math.random()*100+"vw";
+    balon.style.animationDuration=(5+Math.random()*8)+"s";
+
+    document.body.appendChild(balon);
+}
+
+function sorpresa(){
+
+    let texto = `
+     Ola sapa <br><br>
+
+    Hoy cumple años una persona increíble y una de mis mejores amiguitas. <br><br>
+
+    Gracias por todas las risas, las locuras, los buenos momentos
+    y por estar siempre ahí.<br><br>
+
+    Espero que este nuevo año de vida te traiga muchísima felicidad,
+    salud, éxitos y momentos inolvidables(giño, giño). <br><br>
+
+    Disfruta tu dia sanamente y con tu familia, tqm sapa<3
+    `;
+
+    let mensaje = document.getElementById("mensaje");
+    mensaje.innerHTML = texto;
+    mensaje.style.opacity = "1";
+
+    for(let i=0;i<150;i++){
+        let c=document.createElement("div");
+        c.classList.add("confeti");
+
+        c.style.left=Math.random()*100+"vw";
+        c.style.background=
+            `hsl(${Math.random()*360},100%,50%)`;
+
+        document.body.appendChild(c);
+
+        setTimeout(()=>c.remove(),4000);
+    }
+}
+</script>
+
+</body>
+</html>
